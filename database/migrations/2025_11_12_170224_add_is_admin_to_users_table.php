@@ -12,8 +12,7 @@ return new class extends Migration
   public function up(): void
 {
     Schema::table('users', function (Blueprint $table) {
-        // Voegt een 'true/false' kolom toe (een boolean)
-        // 'default(false)' zorgt dat elke nieuwe gebruiker automatisch GEEN admin is.
+
         $table->boolean('is_admin')->default(false)->after('email');
     });
 }
@@ -21,10 +20,10 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
-    }
+public function down(): void
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->dropColumn('is_admin');
+    });
+}
 };
