@@ -13,15 +13,18 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+
+    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
+
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -45,6 +48,41 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div class="mt-4">
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required autocomplete="username" />
+            <x-input-error class="mt-2" :messages="$errors->get('username')" />
+        </div>
+
+
+        <div class="mt-4">
+            <x-input-label for="verjaardag" :value="__('Verjaardag')" />
+            <x-text-input id="verjaardag" name="verjaardag" type="date" class="mt-1 block w-full" :value="old('verjaardag', $user->verjaardag)" />
+            <x-input-error class="mt-2" :messages="$errors->get('verjaardag')" />
+        </div>
+
+
+        <div class="mt-4">
+            <x-input-label for="over_mij" :value="__('Over mij')" />
+            <textarea id="over_mij" name="over_mij" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">{{ old('over_mij', $user->over_mij) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('over_mij')" />
+        </div>
+
+
+        <div class="mt-4">
+            <x-input-label for="profielfoto" :value="__('Profielfoto')" />
+            
+
+            @if ($user->profielfoto)
+                <div class="my-2">
+                    <img src="{{ asset('storage/' . $user->profielfoto) }}" alt="Profielfoto" class="w-20 h-20 rounded-full object-cover">
+                </div>
+            @endif
+
+            <input id="profielfoto" name="profielfoto" type="file" class="mt-1 block w-full text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+            <x-input-error class="mt-2" :messages="$errors->get('profielfoto')" />
         </div>
 
         <div class="flex items-center gap-4">
