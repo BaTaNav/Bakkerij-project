@@ -5,7 +5,8 @@ use App\Http\Controllers\ProfileController;
 // Publieke Controllers
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FaqController;
-use App\Http\Controllers\ContactController; // <-- HIER TOEGEVOEGD
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController; // <-- 1. HIER TOEGEVOEGD
 
 // Admin Controllers
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
@@ -19,9 +20,8 @@ use Illuminate\Support\Facades\Route;
 | Publieke Pagina's
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+// 2. DEZE ROUTE IS AANGEPAST (wijst nu naar HomeController)
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/profiel/{user:username}', [ProfileController::class, 'show'])->name('profile.show');
 
