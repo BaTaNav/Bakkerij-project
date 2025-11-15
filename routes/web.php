@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 
 // Publieke Controllers
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\FaqController; // <-- HIER TOEGEVOEGD
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\ContactController; // <-- HIER TOEGEVOEGD
 
 // Admin Controllers
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
@@ -27,8 +28,11 @@ Route::get('/profiel/{user:username}', [ProfileController::class, 'show'])->name
 Route::get('/nieuws', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/nieuws/{article}', [ArticleController::class, 'show'])->name('articles.show');
 
-// Nieuwe publieke FAQ route
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
+
+// --- PUBLIEKE CONTACT PAGINA ROUTES ---
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 /*
@@ -55,7 +59,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified', 'admin'])->name('admin.')->prefix('admin')->group(function () {
     
     Route::resource('articles', AdminArticleController::class);
-    // --- FIX: Route_:: is nu Route:: ---
     Route::resource('faq-categories', FaqCategoryController::class);
     Route::resource('faq-items', FaqItemController::class);
     
