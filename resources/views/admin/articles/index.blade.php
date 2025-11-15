@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <h2 class="font-semibold text-xl text-primary-800 leading-tight">
                 {{ __('Nieuws Beheer') }}
             </h2>
-            <a href="{{ route('admin.articles.create') }}" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">
+            <a href="{{ route('admin.articles.create') }}" class="px-4 py-2 bg-accent-600 text-white rounded-md hover:bg-accent-700 font-medium transition-colors">
                 Nieuw Artikel
             </a>
         </div>
@@ -12,27 +12,27 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-text-main">
 
                     <!-- Succes boodschap -->
                     @if (session('success'))
-                        <div class="mb-4 p-4 bg-green-200 text-green-800 rounded">
+                        <div class="mb-4 p-4 bg-green-100 text-green-800 rounded border border-green-200">
                             {{ session('success') }}
                         </div>
                     @endif
 
                     <!-- Tabel met artikelen -->
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
+                    <table class="min-w-full divide-y divide-primary-200">
+                        <thead class="bg-primary-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-primary-700 uppercase tracking-wider">
                                     Afbeelding
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-primary-700 uppercase tracking-wider">
                                     Titel
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-primary-700 uppercase tracking-wider">
                                     Gepubliceerd op
                                 </th>
                                 <th scope="col" class="relative px-6 py-3">
@@ -40,34 +40,34 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                        <tbody class="bg-white divide-y divide-primary-100">
                             @forelse ($articles as $article)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <img src="{{ $article->image }}" alt="{{ $article->title }}" class="w-16 h-10 object-cover rounded">
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900 dark:text-gray-100">
+                                        <div class="text-sm font-medium text-text-main">
                                             {{ $article->title }}
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900 dark:text-gray-100">
+                                        <div class="text-sm text-text-secondary">
                                             {{ $article->published_at->format('d-m-Y H:i') }}
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="{{ route('admin.articles.edit', $article) }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900">Bewerken</a>
+                                        <a href="{{ route('admin.articles.edit', $article) }}" class="text-secondary-600 hover:text-secondary-700 font-medium">Bewerken</a>
                                         <form action="{{ route('admin.articles.destroy', $article) }}" method="POST" class="inline-block ml-4" onsubmit="return confirm('Weet je zeker dat je dit artikel wilt verwijderen?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-red-600 dark:text-red-400 hover:text-red-900">Verwijderen</button>
+                                            <button type="submit" class="text-red-600 hover:text-red-700 font-medium">Verwijderen</button>
                                         </form>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                    <td colspan="4" class="px-6 py-4 whitespace-nowrap text-sm text-text-light text-center">
                                         Er zijn nog geen nieuwsartikelen gevonden.
                                     </td>
                                 </tr>

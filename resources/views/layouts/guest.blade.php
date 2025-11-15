@@ -17,7 +17,7 @@
     <body class="font-sans text-gray-900 antialiased">
         
         
-        <nav class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 shadow-sm">
+        <nav class="bg-white border-b border-primary-100 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     
@@ -26,7 +26,7 @@
                         <div class="shrink-0 flex items-center">
                             <a href="{{ route('home') }}">
                                
-                                <span class="font-bold text-lg dark:text-gray-200">De Bakkerij</span>
+                                <span class="font-bold text-xl text-primary-700">De Bakkerij</span>
                             </a>
                         </div>
 
@@ -51,13 +51,13 @@
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         @auth
                            
-                            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-300 underline">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="text-sm font-medium text-secondary-600 hover:text-secondary-700 transition-colors">Dashboard</a>
                         @else
                            
-                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-300 underline">Log in</a>
+                            <a href="{{ route('login') }}" class="text-sm font-medium text-secondary-600 hover:text-secondary-700 transition-colors">Log in</a>
 
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-300 underline">Register</a>
+                                <a href="{{ route('register') }}" class="ml-6 text-sm font-medium text-primary-600 hover:text-primary-700 transition-colors">Register</a>
                             @endif
                         @endauth
                     </div>
@@ -67,7 +67,7 @@
        
 
        
-        <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0 bg-background-warm">
             <!-- Dit deel was er al, maar nu zit het ONDER de <nav> -->
             <div class="w-full">
                 {{ $slot }}

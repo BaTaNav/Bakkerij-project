@@ -1,20 +1,20 @@
 <x-guest-layout>
-    <div class="py-12 bg-gray-100 dark:bg-gray-900 min-h-screen">
+    <div class="py-12 bg-background-warm min-h-screen">
         <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-8 text-center">
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">
+                <h1 class="text-3xl font-bold text-primary-800">
                     Contacteer Ons
                 </h1>
-                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                <p class="text-text-secondary mt-2">
                     Heb je een vraag of een speciale bestelling? Laat het ons weten!
                 </p>
             </div>
             
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden p-8">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden p-8">
 
                 <!-- Succesbericht na versturen -->
                 @if (session('success'))
-                    <div class="mb-4 p-4 bg-green-200 text-green-800 rounded-md">
+                    <div class="mb-4 p-4 bg-green-100 text-green-800 rounded-md border border-green-200">
                         {{ session('success') }}
                     </div>
                 @endif
@@ -39,7 +39,7 @@
                     <!-- Bericht -->
                     <div class="mt-4">
                         <x-input-label for="message" :value="__('Je bericht')" />
-                        <textarea id="message" name="message" rows="6" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required>{{ old('message') }}</textarea>
+                        <textarea id="message" name="message" rows="6" class="block mt-1 w-full border-primary-300 bg-white text-text-main focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm" required>{{ old('message') }}</textarea>
                         <x-input-error :messages="$errors->get('message')" class="mt-2" />
                     </div>
 

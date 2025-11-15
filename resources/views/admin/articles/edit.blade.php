@@ -1,18 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-primary-800 leading-tight">
             {{ __('Bewerk Nieuwsartikel') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-text-main">
                     
                     <!-- Toon validatie fouten -->
                     @if ($errors->any())
-                        <div class="mb-4 p-4 bg-red-200 text-red-800 rounded">
+                        <div class="mb-4 p-4 bg-red-100 text-red-800 rounded border border-red-200">
                             <strong>Oeps!</strong> Er was een probleem met je invoer.<br><br>
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -36,7 +36,7 @@
                         <!-- Content -->
                         <div class="mt-4">
                             <x-input-label for="content" :value="__('Content')" />
-                            <textarea id="content" name="content" rows="10" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">{{ old('content', $article->content) }}</textarea>
+                            <textarea id="content" name="content" rows="10" class="block mt-1 w-full border-primary-300 bg-white text-text-main focus:border-primary-500 focus:ring-primary-500 rounded-md shadow-sm">{{ old('content', $article->content) }}</textarea>
                             <x-input-error :messages="$errors->get('content')" class="mt-2" />
                         </div>
 
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="flex items-center justify-end mt-6">
-                            <a href="{{ route('admin.articles.index') }}" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 mr-4">
+                            <a href="{{ route('admin.articles.index') }}" class="text-text-secondary hover:text-text-main mr-4 font-medium transition-colors">
                                 Annuleren
                             </a>
                             <x-primary-button>
