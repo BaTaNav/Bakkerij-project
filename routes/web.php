@@ -6,12 +6,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\HomeController; // <-- 1. HIER TOEGEVOEGD
+use App\Http\Controllers\HomeController;
 
 // Admin Controllers
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqItemController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController; // <-- 1. HIER TOEGEVOEGD
 
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 | Publieke Pagina's
 |--------------------------------------------------------------------------
 */
-// 2. DEZE ROUTE IS AANGEPAST (wijst nu naar HomeController)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/profiel/{user:username}', [ProfileController::class, 'show'])->name('profile.show');
@@ -30,7 +30,6 @@ Route::get('/nieuws/{article}', [ArticleController::class, 'show'])->name('artic
 
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
-// --- PUBLIEKE CONTACT PAGINA ROUTES ---
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
@@ -61,6 +60,9 @@ Route::middleware(['auth', 'verified', 'admin'])->name('admin.')->prefix('admin'
     Route::resource('articles', AdminArticleController::class);
     Route::resource('faq-categories', FaqCategoryController::class);
     Route::resource('faq-items', FaqItemController::class);
+    
+    // 2. HIER DE ROUTE VOOR PRODUCTBEHEER TOEGEVOEGD
+    Route::resource('products', AdminProductController::class);
     
 });
 

@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-// --- DEZE 'USE' STATEMENTS ZIJN CRUCIAAL ---
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens; // <-- DIT IS DE BELANGRIJKSTE FIX
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany; // <-- HIER TOEGEVOEGD
 
 class User extends Authenticatable
 {
@@ -18,13 +18,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-
+        // Profiel velden
         'username',
         'verjaardag',
         'profielfoto',
         'over_mij',
     ];
-
 
     protected $hidden = [
         'password',
@@ -34,6 +33,11 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed', 
+        'password' => 'hashed',
     ];
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }
