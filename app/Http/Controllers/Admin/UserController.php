@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -20,6 +22,37 @@ class UserController extends Controller
         return view('admin.users.index', [
             'users' => $users
         ]);
+    }
+
+    /**
+     * Toon formulier om nieuwe gebruiker aan te maken
+     */
+    public function create(): View
+    {
+        return view('admin.users.create');
+    }
+
+    /**
+     * Sla nieuwe gebruiker op
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'is_admin' => ['boolean'],
+        ]);
+
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'is_admin' => $request->has('is_admin') ? true : false,
+        ]);
+
+        return redirect()->route('admin.users.index')
+            ->with('success', 'Gebruiker ' . $user->name . ' succesvol aangemaakt.');
     }
 
     /**

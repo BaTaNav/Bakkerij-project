@@ -88,6 +88,8 @@ Route::middleware(['auth', 'verified', 'admin'])->name('admin.')->prefix('admin'
     
     // Gebruikersbeheer
     Route::get('/gebruikers', [AdminUserController::class, 'index'])->name('users.index');
+    Route::get('/gebruikers/nieuw', [AdminUserController::class, 'create'])->name('users.create');
+    Route::post('/gebruikers', [AdminUserController::class, 'store'])->name('users.store');
     Route::post('/gebruikers/{user}/make-admin', [AdminUserController::class, 'makeAdmin'])->name('users.makeAdmin');
     Route::post('/gebruikers/{user}/remove-admin', [AdminUserController::class, 'removeAdmin'])->name('users.removeAdmin');
     
