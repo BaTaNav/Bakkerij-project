@@ -40,11 +40,11 @@
                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Beheer de categorieën voor de FAQ (bv. "Bestellen").</p>
                 </a>
                 
-                <!-- TODO: Gebruikersbeheer (Nog niet geïmplementeerd) -->
-                <div class="block p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md opacity-50 cursor-not-allowed">
+                <!-- Gebruikersbeheer -->
+                <a href="{{ route('admin.users.index') }}" class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Gebruikersbeheer</h3>
-                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">(Nog niet geïmplementeerd)</p>
-                </div>
+                    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Beheer gebruikers en wijs admin rechten toe.</p>
+                </a>
 
             </div>
         </div>

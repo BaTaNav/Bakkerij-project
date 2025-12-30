@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqItemController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -84,6 +85,11 @@ Route::middleware(['auth', 'verified', 'admin'])->name('admin.')->prefix('admin'
     Route::resource('faq-categories', FaqCategoryController::class);
     Route::resource('faq-items', FaqItemController::class);
     Route::resource('products', AdminProductController::class);
+    
+    // Gebruikersbeheer
+    Route::get('/gebruikers', [AdminUserController::class, 'index'])->name('users.index');
+    Route::post('/gebruikers/{user}/make-admin', [AdminUserController::class, 'makeAdmin'])->name('users.makeAdmin');
+    Route::post('/gebruikers/{user}/remove-admin', [AdminUserController::class, 'removeAdmin'])->name('users.removeAdmin');
     
 });
 

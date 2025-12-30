@@ -23,6 +23,7 @@ class User extends Authenticatable
         'verjaardag',
         'profielfoto',
         'over_mij',
+        'is_admin',
     ];
 
     protected $hidden = [
