@@ -42,5 +42,26 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', $user->name . ' is nu een admin.');
     }
+    
+    /**
+     * Verwijder admin rechten van een gebruiker
+     */
+    public function removeAdmin(User $user): RedirectResponse
+    {
+        // Voorkom dat gebruiker zichzelf demote
+        if ($user->id === auth()->id()) {
+            return redirect()->back()->with('error', 'Je kunt je eigen admin rechten niet verwijderen.');
+        }
+
+        // Check of gebruiker admin is
+        if (!$user->is_admin) {
+            return redirect()->back()->with('info', 'Deze gebruiker is geen admin.');
+        }
+
+        // Verwijder admin rechten
+        $user->update(['is_admin' => false]);
+
+        return redirect()->back()->with('success', 'Admin rechten verwijderd van ' . $user->name . '.');
+    }
 
 }
