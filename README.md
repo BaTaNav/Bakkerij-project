@@ -170,6 +170,7 @@ Het project wordt geleverd met een standaard administrator account zoals vereist
 * **Authenticatie:** [Laravel Breeze](https://laravel.com/docs/starter-kits#laravel-breeze)
 * **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 * **Tutorials:** [Laracasts](https://laracasts.com) en [Laravel Daily YouTube Channel](https://www.youtube.com/@LaravelDaily)
+* **Final styling:** gemaakt door copilot door broken chat in VS Code geen link.
 * **Cursusmateriaal:** Backend Development cursusmateriaal (Erasmushogeschool Brussel)
 
 ## Screencast
