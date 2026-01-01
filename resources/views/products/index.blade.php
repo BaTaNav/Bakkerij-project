@@ -1,13 +1,13 @@
 <x-guest-layout>
 
 
-    <div class="py-12 bg-gray-100 min-h-screen">
+    <div class="py-12 bg-background-warm min-h-screen">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-8 text-center">
-                <h1 class="text-3xl font-bold text-gray-900">
+                <h1 class="text-3xl font-bold text-primary-800">
                     Ons Assortiment
                 </h1>
-                <p class="text-gray-600 mt-2">
+                <p class="text-text-secondary mt-2">
                     Bekijk al onze heerlijke, ambachtelijke producten.
                 </p>
             </div>
@@ -17,30 +17,30 @@
                 
                 @forelse ($products as $product)
                
-                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    <div class="bg-white rounded-lg shadow-lg border border-primary-100 overflow-hidden flex flex-col hover:shadow-xl transition-shadow">
                         <a href="{{ route('products.show', $product) }}">
                             <img class="w-full h-48 object-cover" src="{{ $product->image }}" alt="Afbeelding voor {{ $product->name }}">
                         </a>
                         
                         <div class="p-4 flex flex-col flex-grow">
                            
-                            <h2 class="text-lg font-semibold text-gray-900 truncate">
+                            <h2 class="text-lg font-semibold text-primary-800 truncate">
                                 {{ $product->name }}
                             </h2>
                             
                            
-                            <p class="text-lg font-bold text-indigo-600 my-2">
+                            <p class="text-lg font-bold text-secondary-600 my-2">
                                 € {{ $product->price_in_euros }}
                             </p>
                             
                           
-                            <p class="text-gray-600 text-sm mb-4 flex-grow">
+                            <p class="text-text-secondary text-sm mb-4 flex-grow">
                                 {{ \Illuminate\Support\Str::limit($product->description, 70) }}
                             </p>
                             
                            
                             <div class="mt-auto">
-                                <a href="{{ route('products.show', $product) }}" class="block w-full text-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                <a href="{{ route('products.show', $product) }}" class="block w-full text-center px-4 py-2 border border-primary-300 rounded-lg text-sm font-medium text-primary-700 bg-white hover:bg-primary-50 transition-colors">
                                     Bekijk Details
                                 </a>
                                 
@@ -54,7 +54,7 @@
                 @empty
                    
                     <div class="col-span-1 md:col-span-2 lg:col-span-4 text-center py-12">
-                        <p class="text-gray-700 text-lg">
+                        <p class="text-text-secondary text-lg">
                             Er zijn momenteel geen producten beschikbaar in de winkel.
                         </p>
                     </div>
