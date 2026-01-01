@@ -1,143 +1,181 @@
-# Bakkerijproject
+# Bakkerijproject - Laravel Applicatie
 
-Een webapplicatie gebouwd met Laravel voor het beheren van een bakkerij met nieuwsartikelen, FAQ, producten en bestellingen.
+Dit project is een content management systeem voor een bakkerij website. Het bevat functionaliteiten voor nieuwsbeheer, een FAQ-sectie, productencatalogus met bestellingssysteem en gebruikersprofielen met verschillende rollen (Admin/User).
 
-## Installatiestappen
+## Installatie Handleiding
 
-1. Clone de repository:
+Volg deze stappen om het project lokaal draaiende te krijgen:
+
+**1. Clone de repository**
+
 ```bash
 git clone [repository-url]
 cd bakkerijproject
 ```
 
-2. Installeer PHP dependencies:
+**2. Installeer PHP dependencies**
+
 ```bash
 composer install
 ```
 
-3. Installeer NPM dependencies:
+**3. Installeer en build JavaScript assets**
+
 ```bash
 npm install
+npm run dev
 ```
 
-4. Kopieer het `.env.example` bestand naar `.env` en configureer je database instellingen:
+**4. Omgevingsvariabelen instellen**
+
+Maak een kopie van het voorbeeld bestand:
+
 ```bash
 cp .env.example .env
 ```
 
-5. Genereer de application key:
+Generate de app key:
+
 ```bash
 php artisan key:generate
 ```
 
-6. Voer de database migraties uit met seeders:
+**5. Database Configuratie**
+
+Zorg dat je database driver (bijv. SQLite of MySQL) correct is ingesteld in het `.env` bestand.
+Voor SQLite (standaard):
+
+```bash
+touch database/database.sqlite
+```
+
+Voor MySQL, pas de volgende variabelen aan in je `.env`:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bakkerij
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+**6. Migraties en Seeders draaien**
+
+Dit commando maakt de tabellen aan en vult de database met testdata en het admin account:
+
 ```bash
 php artisan migrate:fresh --seed
 ```
 
-7. Link de storage directory:
+**7. Storage link aanmaken**
+
+Voor het uploaden en weergeven van afbeeldingen:
+
 ```bash
 php artisan storage:link
 ```
 
-8. Start de development server:
+**8. Start de development server**
+
 ```bash
 php artisan serve
-npm run dev
 ```
 
-## Verplichte Admin Login
+De applicatie is nu beschikbaar op `http://localhost:8000`
 
+## Inloggegevens
+
+Het project wordt geleverd met een standaard administrator account zoals vereist:
+
+* **Rol:** Admin
 * **Email:** admin@ehb.be
 * **Wachtwoord:** Password!321
 
-## Functionele Features
+## Functionaliteiten
 
-### Rollenbeheer (User vs Admin)
-- Gebruikers kunnen zich registreren en inloggen
-- Admins hebben toegang tot een speciaal dashboard
-- Admin dashboard om gebruikers te beheren en rollen toe te wijzen
+**Nieuws**
+* Publiek kan nieuwsartikelen lezen
+* Admins kunnen nieuwsberichten aanmaken, bewerken en verwijderen
+* Upload en opslag van afbeeldingen op de server
+* Categorisatie van artikelen
 
-### Publieke Profielpagina's
-- Elke gebruiker heeft een publieke profielpagina
-- Gebruikers kunnen hun eigen profiel bewerken
-- Profielfoto upload functionaliteit
-- Biografieveld en andere profielinformatie
+**FAQ**
+* Vragen gegroepeerd per categorie (1-op-veel relatie)
+* Admins kunnen categorieën en vragen beheren via CRUD functionaliteit
+* Gebruikers kunnen FAQ's bekijken per categorie
+* Overzichtelijke presentatie voor bezoekers
 
-### Nieuwssysteem
-- Volledige CRUD functionaliteit voor artikelen
-- Afbeeldingen uploaden en opslaan op de server
-- Categorisatie van nieuwsartikelen
-- Alleen admins kunnen nieuws toevoegen/bewerken/verwijderen
+**Contact**
+* Bezoekers kunnen een contactformulier invullen
+* E-mail wordt verstuurd naar de admin
+* Client-side en server-side validatie
+* CSRF en XSS bescherming
 
-### FAQ-pagina
-- Gecategoriseerde FAQ items
-- CRUD functionaliteit voor admins
-- Gebruikers kunnen FAQ's bekijken per categorie
-- Zoekfunctionaliteit binnen FAQ
+**Producten & Bestellingen**
+* Overzicht van bakkerijproducten met afbeeldingen en prijzen
+* Bestellingssysteem met veel-op-veel relatie (Orders ↔ Products)
+* Admins kunnen producten beheren via CRUD functionaliteit
 
-### Contactformulier
-- Contactformulier met client-side validatie
-- E-mail functionaliteit naar de admin
-- Beveiliging tegen spam
+**Gebruikersbeheer**
+* Admins kunnen via het dashboard andere gebruikers admin-rechten geven of ontnemen
+* Rollenbeheer (User vs Admin)
+* Overzicht van alle geregistreerde gebruikers
 
-## Extra Features
+**Profiel**
+* Gebruikers kunnen hun profiel aanpassen
+* Publieke profielpagina voor elke gebruiker
+* Upload van profielfoto
+* Biografieveld en persoonlijke informatie
 
-- **Productencatalogus**: Overzicht van bakkerijproducten met afbeeldingen en prijzen
-- **Bestellingssysteem**: Veel-op-veel relatie tussen bestellingen en producten
-- **Responsief design**: Volledig responsive interface met Tailwind CSS
-- **Dashboard statistieken**: Admin dashboard met overzicht van statistieken
+## Technische Specificaties
 
-## Technische Specs
+**Layouts & Components**
+* Minimaal 2 verschillende layouts (guest en authenticated)
+* Gebruik van reusable Blade Components voor herbruikbaarheid
+* Component-gebaseerde architectuur
 
-### Layouts & Components
-- Minimaal 2 verschillende layouts (guest en authenticated)
-- Gebruik van reusable Blade Components
-- Component-gebaseerde architectuur
+**Middleware**
+* Authenticatie middleware op alle beveiligde routes
+* Admin middleware voor beheerdersfunctionaliteit
+* CSRF protection op alle formulieren
 
-### Middleware
-- Authenticatie middleware op alle beveiligde routes
-- Admin middleware voor beheerdersfunctionaliteit
-- CSRF protection op alle formulieren
+**Eloquent Relaties**
 
-### Eloquent Relaties
-**1-op-veel relaties:**
-- FAQ Categories → FAQ Items
-- Users → Articles
+*1-op-veel relaties:*
+* FAQ Categories → FAQ Items
+* Users → Articles
 
-**Veel-op-veel relaties:**
-- Orders → Products (via order_product pivot tabel)
+*Veel-op-veel relaties:*
+* Orders ↔ Products (via `order_product` pivot tabel)
 
-### Beveiliging
-- CSRF tokens op alle formulieren
-- XSS protection via Laravel's Blade templating
-- Client-side validatie met JavaScript
-- Server-side validatie met Form Requests
-- Password hashing met bcrypt
+**Beveiliging**
+* CSRF tokens op alle formulieren
+* XSS protection via Laravel's Blade templating engine
+* Client-side validatie met JavaScript
+* Server-side validatie met Form Requests
+* Password hashing met bcrypt
+* Middleware bescherming op alle gevoelige routes
 
-## Documentatie & Git
+## Git & Documentatie
 
-### Version Control
-- Volledige Git geschiedenis met betekenisvolle commits
-- `vendor/` en `node_modules/` staan in `.gitignore`
-- Branches gebruikt voor feature development
+**Version Control**
+* `vendor/` en `node_modules/` staan in `.gitignore`
+* Volledige Git geschiedenis met betekenisvolle commits
+* Branches gebruikt voor feature development
 
-### Bronvermelding
+## Bronvermeldingen
 
-**Framework & Tools:**
-- [Laravel Documentation](https://laravel.com/docs)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Laravel Breeze](https://laravel.com/docs/starter-kits#laravel-breeze)
-
-**Tutorials & Resources:**
-- [Laravel Daily YouTube Channel](https://www.youtube.com/@LaravelDaily)
-- [Laracasts](https://laracasts.com)
-- [Laravel News](https://laravel-news.com)
+* **Framework:** [Laravel 11 Documentation](https://laravel.com/docs)
+* **Authenticatie:** [Laravel Breeze](https://laravel.com/docs/starter-kits#laravel-breeze)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **Tutorials:** [Laracasts](https://laracasts.com) en [Laravel Daily YouTube Channel](https://www.youtube.com/@LaravelDaily)
+* **Cursusmateriaal:** Backend Development cursusmateriaal (Erasmushogeschool Brussel)
 
 ## Screencast
 
 **Link naar video demo:** [Voeg hier de link naar je screencast toe]
 
-## Licentie
+---
 
-Dit project is ontwikkeld als schoolopdracht voor de Erasmushogeschool Brussel.
+*Dit project is ontwikkeld als schoolopdracht voor de Erasmushogeschool Brussel.*
