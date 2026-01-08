@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
             'name' => 'Wit brood',
             'description' => 'Klassiek wit brood, perfect voor tosti\'s en sandwiches',
             'price' => 250, // in centen
-            'image' => null,
+            'image' => '/product-images/witbrood.png',
         ]);
 
         Product::create([
