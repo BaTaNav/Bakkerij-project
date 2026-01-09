@@ -34,6 +34,11 @@ Maak een kopie van het voorbeeld bestand:
 cp .env.example .env
 ```
 
+*Op Windows (PowerShell):*
+```powershell
+copy .env.example .env
+```
+
 Generate de app key:
 
 ```bash
@@ -43,8 +48,33 @@ php artisan key:generate
 **5. Database Configuratie**
 
 Zorg dat je database driver (bijv. SQLite of MySQL) correct is ingesteld in het `.env` bestand.
+<<<<<<< Updated upstream
+=======
 
-Voor MySQL, pas de volgende variabelen aan in je `.env`:
+**Voor SQLite (standaard):**
+
+Maak het database bestand aan:
+
+*Op Mac/Linux:*
+```bash
+touch database/database.sqlite
+```
+>>>>>>> Stashed changes
+
+*Op Windows (PowerShell):*
+```powershell
+New-Item database/database.sqlite -ItemType File
+```
+
+*Of maak het bestand handmatig aan:*
+- Navigeer naar de `database` map in je project
+- Maak een nieuw leeg tekstbestand aan
+- Hernoem het naar `database.sqlite` (zorg dat je bestandsextensies zichtbaar hebt in Windows Verkenner)
+- Het bestand moet GEEN `.txt` extensie hebben, alleen `database.sqlite`
+
+**Voor MySQL:**
+
+Pas de volgende variabelen aan in je `.env`:
 
 ```
 DB_CONNECTION=mysql
@@ -56,6 +86,8 @@ DB_PASSWORD=
 ```
 
 **6. Migraties en Seeders draaien**
+
+⚠️ **Belangrijk:** Zorg dat je eerst stap 5 hebt voltooid en het `database.sqlite` bestand bestaat voordat je dit commando uitvoert!
 
 Dit commando maakt de tabellen aan en vult de database met testdata en het admin account:
 
@@ -77,7 +109,9 @@ php artisan storage:link
 php artisan serve
 ```
 
-De applicatie is nu beschikbaar op `http://localhost:8000`
+De applicatie is nu beschikbaar op `http://localhost:8000` (of op `http://bakkerijproject.test` als je Laravel Herd gebruikt).
+
+💡 **Note:** Als je Laravel Herd gebruikt, hoef je `php artisan serve` niet uit te voeren. Herd draait automatisch je Laravel projecten.
 
 ## Inloggegevens
 
