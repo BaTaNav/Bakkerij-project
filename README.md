@@ -9,8 +9,8 @@ Volg deze stappen om het project lokaal draaiende te krijgen:
 **1. Clone de repository**
 
 ```bash
-git clone [repository-url]
-cd bakkerijproject
+git clone https://github.com/BaTaNav/Bakkerij-project.git
+cd Bakkerij-project
 ```
 
 **2. Installeer PHP dependencies**
@@ -43,11 +43,6 @@ php artisan key:generate
 **5. Database Configuratie**
 
 Zorg dat je database driver (bijv. SQLite of MySQL) correct is ingesteld in het `.env` bestand.
-Voor SQLite (standaard):
-
-```bash
-touch database/database.sqlite
-```
 
 Voor MySQL, pas de volgende variabelen aan in je `.env`:
 
@@ -173,10 +168,9 @@ Het project wordt geleverd met een standaard administrator account zoals vereist
 * **Final styling:** gemaakt door copilot door broken chat in VS Code geen link.
 * **Cursusmateriaal:** Backend Development cursusmateriaal (Erasmushogeschool Brussel)
 
-## Screencast
 
-**Link naar video demo:** [Voeg hier de link naar je screencast toe]
 
----
+
+
 
 *Dit project is ontwikkeld als schoolopdracht voor de Erasmushogeschool Brussel.*
