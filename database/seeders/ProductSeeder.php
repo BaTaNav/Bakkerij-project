@@ -14,21 +14,21 @@ class ProductSeeder extends Seeder
             'name' => 'Wit brood',
             'description' => 'Klassiek wit brood, perfect voor tosti\'s en sandwiches',
             'price' => 250, // in centen
-            'image' => '/product-images/witbrood.png',
+            'image' => 'product-images/witbrood.png',
         ]);
 
         Product::create([
             'name' => 'Meergranenbrood',
             'description' => 'Gezond brood met verschillende granen en zaden',
             'price' => 350,
-            'image' => null,
+            'image' => 'product-images/meergranenbrood.jpg',
         ]);
 
         Product::create([
             'name' => 'Desembrood',
             'description' => 'Traditioneel zuurdesembrood met een krokante korst',
             'price' => 400,
-            'image' => null,
+            'image' => 'product-images/desembrood.jpg',
         ]);
 
         // Croissants & Gebak
@@ -36,21 +36,21 @@ class ProductSeeder extends Seeder
             'name' => 'Boter croissant',
             'description' => 'Verse, knapperige croissant met echte boter',
             'price' => 180,
-            'image' => null,
+            'image' => 'product-images/botercroissant.jpg',
         ]);
 
         Product::create([
             'name' => 'Chocolade croissant',
             'description' => 'Croissant gevuld met pure chocolade',
             'price' => 220,
-            'image' => null,
+            'image' => 'product-images/chocolade_croissant.jpg',
         ]);
 
         Product::create([
             'name' => 'Appeltaart',
             'description' => 'Huisgemaakte appeltaart met kaneel',
             'price' => 350,
-            'image' => null,
+            'image' => 'product-images/appeltaart.jpg',
         ]);
 
         // Koekjes
@@ -58,14 +58,14 @@ class ProductSeeder extends Seeder
             'name' => 'Chocoladekoekjes (per 6)',
             'description' => 'Zachte koekjes met chocoladestukjes',
             'price' => 450,
-            'image' => null,
+            'image' => 'product-images/chocoladekoekjes.jpg',
         ]);
 
         Product::create([
             'name' => 'Boterkoekjes (per 6)',
             'description' => 'Krokante boterkoekjes',
             'price' => 380,
-            'image' => null,
+            'image' => 'product-images/boterkoekjes.jpg',
         ]);
 
         // Taarten
@@ -73,14 +73,14 @@ class ProductSeeder extends Seeder
             'name' => 'Slagroomtaart (8 personen)',
             'description' => 'Heerlijke slagroomtaart met vers fruit',
             'price' => 1850,
-            'image' => null,
+            'image' => 'product-images/slagroomtaart.png',
         ]);
 
         Product::create([
             'name' => 'Chocoladetaart (8 personen)',
             'description' => 'Rijke chocoladetaart voor echte chocoladeliefhebbers',
             'price' => 2000,
-            'image' => null,
+            'image' => 'product-images/chocoladetaart.webp',
         ]);
     }
 }
