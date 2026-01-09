@@ -48,8 +48,6 @@ php artisan key:generate
 **5. Database Configuratie**
 
 Zorg dat je database driver (bijv. SQLite of MySQL) correct is ingesteld in het `.env` bestand.
-<<<<<<< Updated upstream
-=======
 
 **Voor SQLite (standaard):**
 
@@ -59,7 +57,6 @@ Maak het database bestand aan:
 ```bash
 touch database/database.sqlite
 ```
->>>>>>> Stashed changes
 
 *Op Windows (PowerShell):*
 ```powershell
